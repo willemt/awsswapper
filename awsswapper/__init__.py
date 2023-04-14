@@ -10,7 +10,7 @@ from cliar import Cliar
 class Swapper(Cliar):
     """Change AWS accounts using AWS configure profiles"""
 
-    def system(self, profile: str, region: str = ""):
+    def swap(self, profile: str, region: str = "") -> None:
         """Set this profile as the default profile in ~/.aws/credentials"""
 
         path = expanduser("~/.aws/credentials")
@@ -28,6 +28,19 @@ class Swapper(Cliar):
 
         sts = boto3.client("sts")
         print(sts.get_caller_identity())
+
+    def list_profiles(self) -> None:
+        """List available AWS profiles"""
+
+        path = expanduser("~/.aws/credentials")
+
+        config = configparser.ConfigParser()
+        config.read(path)
+
+        profiles = config.sections()
+        for profile in profiles:
+            if profile != "default":
+                print(profile)
 
 
 def main():
