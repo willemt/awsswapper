@@ -26,7 +26,7 @@ For example, to switch to profile1 with the ap-southeast-2 region, use:
 awsswapper swap profile1 --region ap-southeast-2
 ```
 
-## Listing Profiles and Regions
+## Listing Profiles
 To list available AWS profiles, run:
 
 ```bash
